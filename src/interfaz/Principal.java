@@ -37,13 +37,14 @@ public class Principal extends javax.swing.JFrame {
         txtresultado = new javax.swing.JTextField();
         cmdcalcular = new javax.swing.JButton();
         cmdborrar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cmdoperacion = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel1.setText("SUMA DE NUMEROS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 190, 20));
+        jLabel1.setText("OPERACIONES CON DOS NÚMEROS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 190, 20));
 
         jLabel2.setText("Numero Uno");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
@@ -66,10 +67,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(txtnumerodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 40, -1));
 
         jLabel4.setText("Resultado");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, 20));
 
         txtresultado.setEditable(false);
-        getContentPane().add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 40, -1));
+        txtresultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtresultadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 40, -1));
 
         cmdcalcular.setText("Calcular");
         cmdcalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +93,12 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(cmdborrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
+        jLabel5.setText("Operacion");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        cmdoperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suma", "Resta", "Multiplicacion", "Division", " " }));
+        getContentPane().add(cmdoperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,16 +112,33 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
      String num1, num2, res; 
-     int n1,n2,suma;
+     double n1,n2,resultado=0;
+     int op;
       
-     num1 = txtnumerouno.getText();
-     num2 = txtnumerodos.getText();
+     n1 = Double.parseDouble(txtnumerouno.getText());
+     n2 = Double.parseDouble(txtnumerodos.getText());
+     op = cmdoperacion.getSelectedIndex();
      
-     n1 = Integer.parseInt(num1);
-     n2 = Integer.parseInt(num2);
+     switch(op){
+         case 0:
+             resultado = n1 + n2;
+             break;
+         case 1:
+             resultado = n1 - n2;
+             break;
+         case 2:
+             resultado = n1 * n2;
+             break;
+         case 3:
+             resultado = n1 / n2;
+             break;
+             
+     }        
+    
      
-     suma = n1 + n2;
-     res = String.valueOf(suma);
+            
+     
+     res = String.valueOf(resultado);
      
      txtresultado.setText(res);
       // TODO add your handling code here:
@@ -121,7 +150,12 @@ public class Principal extends javax.swing.JFrame {
      txtresultado.setText("");
      
      txtnumerouno.requestFocusInWindow();
+     cmdoperacion.setSelectedIndex(0);
     }//GEN-LAST:event_cmdborrarActionPerformed
+
+    private void txtresultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtresultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtresultadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,10 +195,12 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdborrar;
     private javax.swing.JButton cmdcalcular;
+    private javax.swing.JComboBox cmdoperacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtnumerodos;
     private javax.swing.JTextField txtnumerouno;
     private javax.swing.JTextField txtresultado;
