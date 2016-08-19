@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("OPERACIONES CON DOS NÚMEROS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 190, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 270, 20));
 
         jLabel2.setText("Numero Uno");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
@@ -59,11 +59,21 @@ public class Principal extends javax.swing.JFrame {
                 txtnumerounoActionPerformed(evt);
             }
         });
+        txtnumerouno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnumerounoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtnumerouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 40, -1));
 
         txtnumerodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnumerodosActionPerformed(evt);
+            }
+        });
+        txtnumerodos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnumerodosKeyTyped(evt);
             }
         });
         getContentPane().add(txtnumerodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 40, -1));
@@ -125,11 +135,21 @@ public class Principal extends javax.swing.JFrame {
          txtnumerodos.requestFocusInWindow();
      }else{
          
-     }
+     
+         
+     
       
      n1 = Double.parseDouble(txtnumerouno.getText());
      n2 = Double.parseDouble(txtnumerodos.getText());
      op = cmdoperacion.getSelectedIndex();
+     
+     if(op == 3 && n2 == 0){
+         JOptionPane.showMessageDialog(this,"No digite cero en el segundo número","Error", JOptionPane.ERROR_MESSAGE);
+         txtnumerodos.requestFocusInWindow();
+         txtnumerodos.selectAll();
+     }else{
+         
+     
      
      switch(op){
          case 0:
@@ -151,11 +171,11 @@ public class Principal extends javax.swing.JFrame {
             
      
      res = String.valueOf(resultado);
-     
      txtresultado.setText(res);
       // TODO add your handling code here:
     }//GEN-LAST:event_cmdcalcularActionPerformed
-
+    }
+    }
     private void cmdborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrarActionPerformed
      txtnumerouno.setText("");
      txtnumerodos.setText("");
@@ -168,6 +188,28 @@ public class Principal extends javax.swing.JFrame {
     private void txtresultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtresultadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtresultadoActionPerformed
+
+    private void txtnumerounoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumerounoKeyTyped
+     char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+               
+               
+          } 
+    }//GEN-LAST:event_txtnumerounoKeyTyped
+
+    private void txtnumerodosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumerodosKeyTyped
+     char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+                      
+          } 
+    }//GEN-LAST:event_txtnumerodosKeyTyped
 
     /**
      * @param args the command line arguments
