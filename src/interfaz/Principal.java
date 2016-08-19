@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 190, 20));
 
         jLabel2.setText("Numero Uno");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         jLabel3.setText("Numero Dos");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 64, -1, 20));
@@ -56,18 +56,20 @@ public class Principal extends javax.swing.JFrame {
                 txtnumerounoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtnumerouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 50, -1));
+        getContentPane().add(txtnumerouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 40, -1));
 
         txtnumerodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnumerodosActionPerformed(evt);
             }
         });
-        getContentPane().add(txtnumerodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 50, -1));
+        getContentPane().add(txtnumerodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 40, -1));
 
         jLabel4.setText("Resultado");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
-        getContentPane().add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 50, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, 20));
+
+        txtresultado.setEditable(false);
+        getContentPane().add(txtresultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 40, -1));
 
         cmdcalcular.setText("Calcular");
         cmdcalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +80,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(cmdcalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         cmdborrar.setText("Borrar");
+        cmdborrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdborrarActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmdborrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
         pack();
@@ -92,8 +99,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumerodosActionPerformed
 
     private void cmdcalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdcalcularActionPerformed
-        // TODO add your handling code here:
+     String num1, num2, res; 
+     int n1,n2,suma;
+      
+     num1 = txtnumerouno.getText();
+     num2 = txtnumerodos.getText();
+     
+     n1 = Integer.parseInt(num1);
+     n2 = Integer.parseInt(num2);
+     
+     suma = n1 + n2;
+     res = String.valueOf(suma);
+     
+     txtresultado.setText(res);
+      // TODO add your handling code here:
     }//GEN-LAST:event_cmdcalcularActionPerformed
+
+    private void cmdborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdborrarActionPerformed
+     txtnumerouno.setText("");
+     txtnumerodos.setText("");
+     txtresultado.setText("");
+     
+     txtnumerouno.requestFocusInWindow();
+    }//GEN-LAST:event_cmdborrarActionPerformed
 
     /**
      * @param args the command line arguments
